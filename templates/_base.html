@@ -8,6 +8,13 @@
     </title>
 </head>
 <body>
+    <header>
+        <nav>
+            <a href="{% url 'games:homepage' %}">Home</a> |
+            <a href="{% url 'games:math-game' %}">Math Game</a> |
+            <a href="{% url 'games:anagram-game' %}">Anagram Game</a>
+        </nav>
+    </header>
     {% block main %}{% endblock %}
 </body>
 </html>
