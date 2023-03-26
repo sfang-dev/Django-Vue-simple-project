@@ -1,0 +1,19 @@
+{% extends "_base.html" %}
+
+{% block title %}Game Scores{% endblock %}
+{% block main %}
+    <h1>Game Scores</h1>
+    <h2>Math Game</h2>
+    <ol>
+        {% for score in math_scores %}
+            <li>{{ score.score }}: ({{ score.user_name }} - {{ score.created }})</li>
+        {% endfor %}
+    </ol>
+
+    <h2>Anagram Game</h2>
+    <ol>
+        {% for score in anagram_scores %}
+            <li>{{ score.score }}: ({{ score.user_name }} - {{ score.created }})</li>
+        {% endfor %}
+    </ol>
+{% endblock %}
