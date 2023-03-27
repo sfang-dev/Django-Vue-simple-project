@@ -125,7 +125,7 @@ urlpatterns = [
 
 ### 网页模版
 
-1. 创建`templates` 文件夹，与`django-vue` 文件同级。
+1. 在项目根目录创建 `templates` 文件夹。
 
 2. 在 `djangovue_project/settings.py` 里配置一下模版的路径。
 
@@ -801,11 +801,12 @@ class GameScore(models.Model):
 
 ![image-20230326213215466](https://cdn.jsdelivr.net/gh/feng-sifang/pichost/imgs/image-20230326213215466.png)
 
-完。
+# 如何使用Git仓库
 
+初次 `clone` 仓库的时候直接运行 `python manage.py migrate` 和 `npm run serve` 后Vue会报错，数据库也会报错。
 
-
-
+1. 在 `vue-games`目录运行 `rm -rf node_modules && npm install` 重新安装一下环境。这时候Vue有了。
+2. 在项目根目录运行 `python manage.py migrate` 重新链接数据库。
 
 
 
