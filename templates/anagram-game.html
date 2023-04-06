@@ -1,11 +1,59 @@
-{% extends "_base_vue.html" %}
+{% extends "_base.html" %}
 
 {% block title %}
-    Anagram-Game
+  Anagram Game
 {% endblock %}
 
+
 {% block main %}
-    <h1>
-        Anagram-Game
-    </h1>
+  <h1>Anagram Game</h1>
+  <p>This is the anagram game.</p>
+  <form id="anagram-form">
+    <div>
+      <label for="user-name">Username</label>
+      <input name="user-name" id="user-name"/>
+    </div>
+    <div>
+      <label for="score">Score</label>
+      <input name="score" type="number" id="score"/>
+    </div>
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    <button type="submit" id="record-score">Record Score</button>
+  </form>
+  <style>
+    div, label {
+      padding: 0.2rem;
+    }
+  </style>
 {% endblock %}
+<script>
+  document.getElementById('anagram-form').addEventListener('submit', async (e) => {
+    e.preventDefault()
+    const userName = document.getElementById('user-name').value
+    const score = document.getElementById('score').value
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+    const data = {
+      'user-name': userName,
+      'score': score,
+      'game': 'ANAGRAM',
+    }
+
+    try {
+      const response = await fetch('/record-score/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken,
+        },
+        body: JSON.stringify(data),
+      })
+
+      const result = await response.json()
+      console.log(result)
+    } catch (error) {
+      console.error(error)
+    }
+  })
+</script>
+

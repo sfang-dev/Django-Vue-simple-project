@@ -170,3 +170,4 @@ cython_debug/
 #.idea/
 
 /vue-games/node_modules/
+/games/migrations
