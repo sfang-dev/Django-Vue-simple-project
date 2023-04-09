@@ -25,35 +25,35 @@
       padding: 0.2rem;
     }
   </style>
+  <script>
+    document.getElementById('anagram-form').addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const userName = document.getElementById('user-name').value
+      const score = document.getElementById('score').value
+      const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+      const data = {
+        'user-name': userName,
+        'score': score,
+        'game': 'ANAGRAM',
+      }
+
+      try {
+        const response = await fetch('/record-score/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+          },
+          body: JSON.stringify(data),
+        })
+
+        const result = await response.json()
+        console.log(result)
+      } catch (error) {
+        console.error(error)
+      }
+    })
+  </script>
 {% endblock %}
-<script>
-  document.getElementById('anagram-form').addEventListener('submit', async (e) => {
-    e.preventDefault()
-    const userName = document.getElementById('user-name').value
-    const score = document.getElementById('score').value
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
-
-    const data = {
-      'user-name': userName,
-      'score': score,
-      'game': 'ANAGRAM',
-    }
-
-    try {
-      const response = await fetch('/record-score/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': csrfToken,
-        },
-        body: JSON.stringify(data),
-      })
-
-      const result = await response.json()
-      console.log(result)
-    } catch (error) {
-      console.error(error)
-    }
-  })
-</script>
 
